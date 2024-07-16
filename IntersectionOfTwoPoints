@@ -1,0 +1,36 @@
+Approach for revision : to idea ye hai ki hm do pointers rkhege ek headA pe aur ek headB pe jo honge t1 and t2 aur hum traverse krege jb tk dono barabar na ho jaye 
+halaki dono barabar honge jha hmara intersection point aayega to hum dono pointers ko bdhate jayege agar hmara koi bhi pointer null pahucha to hum use dusre head ke start se 
+phirse chalayege ex t1 == NULL ho gya to jo t1 pehle headA ko point kr rha tha ab use headB pe point krayege aise t2 ke sath bhi krege agar wo null hua to aise main hmara 
+intersection point mil jayega 
+
+
+
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA == NULL || headB == NULL){
+            return NULL;
+        }
+        ListNode* t1 = headA;
+        ListNode* t2 = headB;
+
+        while(t1 != t2){
+            t1 = t1->next;
+            t2 = t2->next;
+
+            if(t1 == t2){
+                return t1;
+            }
+
+            if(t1 == NULL){
+                t1 = headB;
+            }
+            if(t2 == NULL){
+                t2 = headA;
+            }
+        }
+        return t1;
+
+    }
+};
