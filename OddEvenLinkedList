@@ -1,0 +1,36 @@
+Approach In 4 steps for revision :
+Step1 : Hme pta hai ki first Node odd hoga then 2nd node even hoga and so on until null
+step2: Ek odd pointer pehle head pe rkhege then ek even pointer head->next pe rkhege kyoki head->next even hai
+step3 : ye pta hai hme ki pehle hmara even pointer he null hoga kyoki wo ek aage hai 
+step4: hm pehle odd->next = odd->next->next; ab hmara odd jake dusre odd ko attach ho gya ab odd ko aage bdhayege odd = odd->next krke aises same even ke sath kre
+step5 : in last hm jo odd ko even ke head se jod denge odd->next = evenhead;
+return head
+
+
+
+
+class Solution {
+    public ListNode oddEvenList(ListNode head) {
+        if(head==null){
+            return head;
+        }
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenHead = even;
+
+        while(even != null && even.next != null){
+            //Move odd pointers
+            odd.next = odd.next.next;
+            odd = odd.next;
+           
+           //Move even Pointers
+            even.next = even.next.next;
+            even = even.next;
+
+
+           
+        }
+         odd.next = evenHead;
+         return head;
+    }
+}
