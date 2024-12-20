@@ -1,0 +1,29 @@
+class Solution
+{
+public:
+    
+    //So the idea is to move the nextNode that will always ahead of tempNode
+    //will move until temp is equal to nextNode and when it is found unmatched 
+    //The loop will break and temp->next will point to newNode and newnode prev will point to 
+    //temp || then again the upper loop will continue further 
+    Node * removeDuplicates(struct Node *head)
+    {
+        // Your code here
+        Node* temp = head;
+        Node* nextNode = NULL;
+        while(temp != NULL && temp->next != NULL){
+            
+            nextNode = temp->next;
+            while(nextNode != NULL && temp->data == nextNode->data){
+                nextNode = nextNode->next;
+            }
+            temp->next = nextNode;
+            if(nextNode != NULL){
+                nextNode->prev = temp;
+            }
+            
+            temp = temp->next;
+        }
+        return head;
+    }
+};
